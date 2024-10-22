@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -7,13 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-
   username: string = "";
   menuOpen: boolean = false;
   selectedClass: string = '';
   qrCodeData: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -27,10 +26,15 @@ export class PrincipalPage implements OnInit {
   seleccionarClase(clase: string) {
     this.selectedClass = clase;
     this.qrCodeData = `Asistencia para la clase de ${clase}`;
-    this.menuOpen = false; 
+    this.menuOpen = false;
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.username = user.username || 'Invitado';
+  }
 
+  // Método para cerrar sesión
+  logout() {
+    localStorage.removeItem('ingresado');
+    this.router.navigate(['/']); 
   }
 }
