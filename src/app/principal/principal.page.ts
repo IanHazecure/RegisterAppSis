@@ -19,18 +19,7 @@ export class PrincipalPage implements OnInit {
     this.username = user.username || 'Invitado';
   }
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  seleccionarClase(clase: string) {
-    this.selectedClass = clase;
-    this.qrCodeData = `Asistencia para la clase de ${clase}`;
-    this.menuOpen = false;
-
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.username = user.username || 'Invitado';
-  }
+  
 
   // Método para cerrar sesión
   logout() {
