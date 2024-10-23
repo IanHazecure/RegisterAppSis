@@ -1,19 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Register
-    </ion-title>
-  </ion-toolbar>
+  <!-- <ion-toolbar>
+
+  </ion-toolbar> -->
 </ion-header>
 
+  <ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons>
+      <ion-button>
+        <span>MATCH</span>
+      </ion-button>
+      <ion-button>
+        <span>Beneficios</span>
+      </ion-button>
+      <ion-button>
+        <span>Ayuda</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title>Register</ion-title>
+      <ion-title size="large">RECUPERAR</ion-title>
     </ion-toolbar>
   </ion-header>
-  
   <ion-content>
+    
     <div id="container">
       <ion-list>
         <ion-item>
@@ -23,11 +36,12 @@
           <ion-input [(ngModel)]="password" placeholder="Password" type="password" required></ion-input>
         </ion-item>
   
-        <ion-button id="btn-register" expand="block" color="warning" [disabled]="!username || !password" (click)="register()">Registrarse</ion-button>
-      </ion-list>
+        <ion-button id="btn-register" expand="block"  [disabled]="!username || !password" (click)="register()">Registrarse</ion-button>
+      
       <ion-item>
-        <ion-label color="primary" [routerLink]="['/']">Volver</ion-label>
+        <ion-label id="btn-volver" [routerLink]="['/']">Volver</ion-label>
       </ion-item>
+    </ion-list>
     </div>
   </ion-content>
   
