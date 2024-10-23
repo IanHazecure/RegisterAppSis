@@ -1,55 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap');
+
 ion-content {
   --background: white; /* blanco */
+  font-family: 'Nunito', sans-serif;
 }
 
 
 #container {
-  background-color: #7200ff;
-  text-align: center;
-  margin: 2rem;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 30%;
+  --background: #7200ff;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+#btn-iniciar{
+padding-top: 10%;
 
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  margin: 0;
+#recuperarPass {
+  font-family: 'Nunito', sans-serif;
+  color: white; 
 }
 
-#container a {
-  text-decoration: none;
-}
-
-#btn-iniciar {
-  margin-top: 1rem;
-  width: 7rem;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 1rem;
-}
-
-#botones-login{
-  text-align: center;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-#recuperarPas{
-  
-  text-decoration: none;
-}
-
-#recuperarPass:hover{
-  text-decoration: underline; 
+#register {
+  color:white; 
 }
 
 .custom-toolbar {
@@ -58,15 +36,21 @@ ion-content {
   justify-content: center;
   align-items: center;
 }
-
-.ion-item {
-
-  background-color: #7200ff;
+ion-list {
+  width: 80%;
+  background-color: #7200ff; 
+  border-radius: 10px; 
+}
+ion-item {
+  --background: transparent; 
+  color: white; 
+}
+ion-input {
+  --background: transparent;
+  color: white; 
 }
 
 ion-button {
-  --background: transparent;
-  --color: white; 
   font-weight: bold;
   text-transform: none;
   font-size: 16px;
