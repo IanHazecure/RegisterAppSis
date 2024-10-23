@@ -2,7 +2,6 @@
 
 ion-content {
   --background: white; /* blanco */
-  font-family: 'Nunito', sans-serif;
 }
 
 
@@ -24,19 +23,31 @@ padding-top: 10%;
 #recuperarPass {
   font-family: 'Nunito', sans-serif;
   color: white; 
+  text-align: center;
+  cursor: pointer; 
 }
 
 #register {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
   color:white; 
+  cursor: pointer; 
 }
 
+#btn-iniciar {
+  --background: white;
+  --color: #7200ff;
+
+}
 .custom-toolbar {
+  --font-family: 'Nunito', sans-serif;
   --background: #7200ff; 
   border-radius: 30px; 
   justify-content: center;
   align-items: center;
 }
 ion-list {
+  font-family: 'Nunito', sans-serif;
   width: 80%;
   background-color: #7200ff; 
   border-radius: 10px; 
@@ -46,12 +57,14 @@ ion-item {
   color: white; 
 }
 ion-input {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
   --background: transparent;
   color: white; 
 }
 
 ion-button {
-  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
   text-transform: none;
   font-size: 16px;
   padding: 0 15px; 

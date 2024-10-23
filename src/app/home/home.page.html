@@ -10,7 +10,7 @@
   <ion-toolbar class="custom-toolbar">
     <ion-buttons>
       <ion-button>
-        <span>Inicio</span>
+        <span>MATCH</span>
       </ion-button>
       <ion-button>
         <span>Beneficios</span>
@@ -29,6 +29,8 @@
     </ion-toolbar>
   </ion-header>
 
+
+
   <div id="container">
     <ion-list>
       <ion-item>
@@ -38,15 +40,16 @@
         <ion-input [(ngModel)]="password" label="Password" type="password" labelPlacement="floating"></ion-input>
       </ion-item>
       
-      <ion-button id="btn-iniciar" expand="block" color="warning" (click)="login()">
+      <ion-button id="btn-iniciar" expand="block" (click)="login()">
         INGRESAR
       </ion-button> 
       <ion-item id="botones-login" lines="none">
-        <ion-label color="secondary" (click)="goToRecuperar()" id="recuperarPass">Recuperar contraseña</ion-label>
+        <ion-label  (click)="goToRecuperar()" id="recuperarPass">Recuperar contraseña</ion-label>
       </ion-item>
       <ion-item id="botones-login" lines="none">
-        <ion-label color="secondary" (click)="goToRegister()" id="register">¿No tienes una cuenta? Regístrate</ion-label>
+        <ion-label  (click)="goToRegister()" id="register">¿No tienes una cuenta? Regístrate</ion-label>
       </ion-item>
     </ion-list>
   </div>
-</ion-content>
+
+
