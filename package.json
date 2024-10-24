@@ -31,11 +31,11 @@
     "angularx-qrcode": "^18.0.2",
     "clean-css": "^5.3.3",
     "ionicons": "^7.0.0",
-    "package-name": "^0.1.0",
-    "rollup": "^4.24.0",
+    "ng-qrcode": "^18.0.0",
+    "ngx-qrcode": "^0.1.0-rc.1",
+    "ngx-qrcode2": "^9.0.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "ws": "^8.18.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
