@@ -18,23 +18,23 @@ ion-content {
   }
 #btn-register{
 font-family: 'Nunito', sans-serif;
-    padding-top: 10%;
+    padding-top: 2%;
   --background: white;
   --color: #7200ff;
+  cursor: pointer;
 }
 
 #btn-volver{
   font-family: 'Nunito', sans-serif;
 text-align: center;
 color: white;
-
+cursor: pointer;
 }
 
 .custom-toolbar {
   color: white;
     --font-family: 'Nunito', sans-serif;
     --background: #7200ff; 
-    border-radius: 30px; 
     justify-content: center;
     align-items: center;
   }
@@ -82,15 +82,18 @@ color: white;
     margin: 10px 0px;
   }
 
- #btn-docente{
+  #btn-docente,
+  #btn-alumno {
+    padding: 10px; 
     font-family: 'Nunito', sans-serif;
     --background: white;
-  --color: #7200ff;
+    --color: #7200ff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease
   }
 
-  #btn-alumno{
   
-    font-family: 'Nunito', sans-serif;
-    --background: white;
-  --color: #7200ff;
-  }
+ion-button.selected {
+  color: #11b93e; 
+  transform: scale(0.95);
+  box-shadow: inset rgba(0, 0, 0, 0.2);
+}
