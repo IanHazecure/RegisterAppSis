@@ -29,6 +29,7 @@
     "@ionic/angular": "^8.0.0",
     "angularx-qrcode": "^18.0.2",
     "ionicons": "^7.0.0",
+    "ng-qrcode": "^18.0.0",
     "ngx-qrcode": "^0.1.0-rc.1",
     "ngx-qrcode2": "^9.0.0",
     "rxjs": "~7.8.0",

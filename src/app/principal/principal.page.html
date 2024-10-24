@@ -1,41 +1,57 @@
 <ion-header [translucent]="true">
-    <!-- <ion-toolbar>
+  <!-- <ion-toolbar>
   
     </ion-toolbar> -->
-  </ion-header>
-  
-  <ion-header>
-    <ion-toolbar class="custom-toolbar">
-      <ion-buttons>
-        <ion-button>
-          <span>MATCH</span>
-        </ion-button>
-        <ion-button>
-          <span>Beneficios</span>
-        </ion-button>
-        <ion-button>
-          <span>Ayuda</span>
-        </ion-button>
-      </ion-buttons>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons>
+      <ion-button>
+        <span>MATCH</span>
+      </ion-button>
+      <ion-button>
+        <span>Beneficios</span>
+      </ion-button>
+      <ion-button>
+        <span>Ayuda</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">LOGIN</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">LOGIN</ion-title>
-      </ion-toolbar>
-    </ion-header>
 
-    
-   
-    <div id="container">
-      <div id="saludo">
-        Bienvenido Docente {{ username }} !
-      </div>
+
+
+  <div id="container">
+    <div id="saludo">
+      Bienvenido Docente {{ username }} !
     </div>
-    <div class="button-container">
-      <div button id="btn-cerrar" (click)="logout()">Cerrar Sesión</div>
-    </div>
-  
+  </div>
+
+  <div class="button-container">
+    <div id="btn-clases" (click)="showProgramacionButton()">Clases</div>
+  </div>
+
+  <div class="button-container" *ngIf="programacionButtonVisible">
+    <div id="btn-programacion" (click)="showQRCode()">Base de datos</div>
+  </div>
+
+  <div class="qr-code-container" *ngIf="qrCodeVisible">
+    <qr-code value="Estas presente en tu clase de programacion {{ username }} " size="300" errorCorrectionLevel="M"></qr-code>
+  </div>
+
+
+
+  <div class="button-container">
+    <div button id="btn-cerrar" (click)="logout()">Cerrar Sesión</div>
+  </div>
+
+
 </ion-content>

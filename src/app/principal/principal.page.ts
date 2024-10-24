@@ -11,7 +11,7 @@ export class PrincipalPage implements OnInit {
   menuOpen: boolean = false;
   selectedClass: string = '';
   qrCodeVisible: boolean = false;
-  qrCodeValue: string = 'Funciona';
+  programacionButtonVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -27,7 +27,15 @@ export class PrincipalPage implements OnInit {
     localStorage.removeItem('ingresado');
     this.router.navigate(['/']); 
   }
+  showProgramacionButton() {
+    this.programacionButtonVisible = !this.programacionButtonVisible;
+
+    if (this.qrCodeVisible) {
+      this.qrCodeVisible = false;
+    }
+  }
+
   showQRCode() {
-    this.qrCodeVisible = true;
+    this.qrCodeVisible = !this.qrCodeVisible;
   }
 }
