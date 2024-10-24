@@ -10,7 +10,8 @@ export class PrincipalPage implements OnInit {
   username: string = "";
   menuOpen: boolean = false;
   selectedClass: string = '';
-  qrCodeData: string = '';
+  qrCodeVisible: boolean = false;
+  qrCodeValue: string = 'Funciona';
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -25,5 +26,8 @@ export class PrincipalPage implements OnInit {
   logout() {
     localStorage.removeItem('ingresado');
     this.router.navigate(['/']); 
+  }
+  showQRCode() {
+    this.qrCodeVisible = true;
   }
 }

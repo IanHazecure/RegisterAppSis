@@ -26,8 +26,10 @@
   display: flex;
   justify-content: center; 
   width: 100%; 
+  padding: 3vh;
 }
 
+#btn-clases,
 #btn-cerrar {
   font-family: 'Nunito', sans-serif;
   width: auto; 
@@ -36,9 +38,7 @@
   background: #7200ff; 
   color: white; 
   border-radius: 5px;
-  text-align: center; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 
@@ -85,4 +85,9 @@ ion-buttons {
 
 ion-icon {
   margin-left: 5px; 
+}
+.qr-code-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px; /* Add some margin above the QR code */
 }
