@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AlumnosPageRoutingModule } from './alumnos-routing.module';
 
-import { PrincipalPage } from './alumnos.page';
+import { AlumnosPage} from './alumnos.page';
 import { QRCodeModule } from 'angularx-qrcode';
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { QRCodeModule } from 'angularx-qrcode';
     AlumnosPageRoutingModule,
     QRCodeModule 
   ],
-  declarations: [PrincipalPage]
+  declarations: [AlumnosPage]
 })
-export class PrincipalPageModule {}
+export class AlumnosPageModule {}

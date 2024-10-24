@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './alumnos.page.html',
   styleUrls: ['./alumnos.page.scss'],
 })
-export class PrincipalPage implements OnInit {
+export class AlumnosPage implements OnInit {
   username: string = "";
   menuOpen: boolean = false;
   selectedClass: string = '';
@@ -21,14 +21,10 @@ export class PrincipalPage implements OnInit {
 
   
 
-  // Método para cerrar sesión
-  logout() {
-    localStorage.removeItem('ingresado');
-    this.router.navigate(['/']); 
-  }
+ // Método para cerrar sesión
+ logout() {
+  localStorage.removeItem('ingresado');
+  localStorage.removeItem('usertype');
+  this.router.navigate(['/home'], { replaceUrl: true }); 
 }
-
-export class AlumnosPage {
-
-
 }
