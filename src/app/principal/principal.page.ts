@@ -11,6 +11,7 @@ export class PrincipalPage implements OnInit {
   menuOpen: boolean = false;
   selectedClass: string = '';
   qrCodeData: string = '';
+  imageVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -26,4 +27,6 @@ export class PrincipalPage implements OnInit {
     localStorage.removeItem('ingresado');
     this.router.navigate(['/']); 
   }
+
 }
+

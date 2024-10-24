@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center; 
   align-items: center; 
-  height: 30vh;
+  height: 20vh;
   text-align: center;
 }
 
@@ -18,7 +18,7 @@
   background: #7200ff;
   color: white; 
   font-size: 3vh;
-  padding: 0 15px; 
+  padding: 0 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
 }
@@ -26,8 +26,10 @@
   display: flex;
   justify-content: center; 
   width: 100%; 
+  padding: 3vh;
 }
 
+#btn-clases,
 #btn-cerrar {
   font-family: 'Nunito', sans-serif;
   width: auto; 
@@ -36,9 +38,7 @@
   background: #7200ff; 
   color: white; 
   border-radius: 5px;
-  text-align: center; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 
@@ -85,4 +85,15 @@ ion-buttons {
 
 ion-icon {
   margin-left: 5px; 
+}
+.image-container {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+
+.image-container img {
+  width: 150px; 
+  height: 150px; 
+}
+
 }
