@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,12 +18,20 @@ export class HomePage {
     const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
 
     if (this.usuario === storedUser.username && this.password === storedUser.password) {
-      this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
-      localStorage.setItem('ingresado', 'true');
-      this.navCtrl.navigateRoot('/principal');
+      const userType = storedUser.userType;
+      if (userType === 'Docente') {
+        this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
+        localStorage.setItem('ingresado', 'true');
+        this.navCtrl.navigateRoot('/principal');
+      } else if (userType === 'Alumno') {
+        this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
+        localStorage.setItem('ingresado', 'true');
+        this.navCtrl.navigateRoot('/alumnos');
+      } else {
+        console.log('User type not recognized.');
+      }
     } else {
-      console.log('Invalid credentials');
-      // Optionally, show an alert or message to the user
+      console.log('Invalido');
     }
   }
 
