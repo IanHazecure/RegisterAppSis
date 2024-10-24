@@ -10,8 +10,8 @@ export class PrincipalPage implements OnInit {
   username: string = "";
   menuOpen: boolean = false;
   selectedClass: string = '';
-  qrCodeData: string = '';
-  imageVisible: boolean = false;
+  qrCodeVisible: boolean = false;
+  programacionButtonVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -27,6 +27,15 @@ export class PrincipalPage implements OnInit {
     localStorage.removeItem('ingresado');
     this.router.navigate(['/']); 
   }
+  showProgramacionButton() {
+    this.programacionButtonVisible = !this.programacionButtonVisible;
 
+    if (this.qrCodeVisible) {
+      this.qrCodeVisible = false;
+    }
+  }
+
+  showQRCode() {
+    this.qrCodeVisible = !this.qrCodeVisible;
+  }
 }
-

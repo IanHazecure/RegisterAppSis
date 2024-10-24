@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center; 
   align-items: center; 
-  height: 20vh;
+  height: 10vh;
   text-align: center;
 }
 
@@ -30,6 +30,7 @@
 }
 
 #btn-clases,
+#btn-programacion,
 #btn-cerrar {
   font-family: 'Nunito', sans-serif;
   width: auto; 
@@ -38,7 +39,11 @@
   background: #7200ff; 
   color: white; 
   border-radius: 5px;
-  cursor: pointer; 
+  cursor: pointer; /* Ensure the cursor is a pointer */
+  margin-bottom: 10px; /* Add some space below each button */
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-20px); /* Initially positioned above */
+  animation: slide-in 0.5s forwards; /* Slide in animation */
 }
 
 
@@ -86,14 +91,28 @@ ion-buttons {
 ion-icon {
   margin-left: 5px; 
 }
-.image-container {
-  display: flex;
-  justify-content: center; 
-  margin-top: 20px; 
 
-.image-container img {
-  width: 150px; 
-  height: 150px; 
+
+.qr-code-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-top: 20px; /* Add some margin above the QR code */
+  opacity: 0; /* Initially hidden */
+  transform: translateY(-20px); /* Initially positioned above */
+  animation: slide-in 0.5s forwards; /* Slide in animation */
 }
 
+@keyframes slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
