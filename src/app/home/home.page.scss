@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap');
 
 ion-content {
-  --background: white; /* blanco */
+  --background: white; 
 }
 
 
@@ -40,6 +40,7 @@ padding-top: 10%;
 
 }
 .custom-toolbar {
+  color: white;
   --font-family: 'Nunito', sans-serif;
   --background: #7200ff; 
   border-radius: 30px; 

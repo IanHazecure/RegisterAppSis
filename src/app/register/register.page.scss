@@ -1,44 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap');
+
+
+ion-content {
+
+  --background: white;
+}
+
 #container {
-    text-align: center;
-    margin: 2rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 30%;
-    // transform: translateY(-50%);
+    --background: #7200ff;
+    background: none;
+    justify-content: center; 
+    align-items: center; 
+    height: 60%;
+    padding: 30px; 
+    border-radius: 50px; 
+
   }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
+#btn-register{
+font-family: 'Nunito', sans-serif;
+    padding-top: 10%;
+  --background: white;
+  --color: #7200ff;
+}
+
+#btn-volver{
+  font-family: 'Nunito', sans-serif;
+text-align: center;
+color: white;
+
+}
+
+.custom-toolbar {
+  color: white;
+    --font-family: 'Nunito', sans-serif;
+    --background: #7200ff; 
+    border-radius: 30px; 
+    justify-content: center;
+    align-items: center;
   }
-  
-  #container p {
+
+  ion-button {
+    font-family: 'Nunito', sans-serif;
+    text-transform: none;
     font-size: 16px;
-    line-height: 22px;
-  
-    color: #8c8c8c;
-  
-    margin: 0;
+    padding: 0 15px; 
+  }
+  ion-toolbar {
+    padding: 0 50px;
   }
   
-  #container a {
-    text-decoration: none;
+  ion-buttons {
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
   }
   
-  #btn-register {
-    margin-top: 1rem;
-    width: 9rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 1rem;
+  ion-icon {
+    margin-left: 5px; 
   }
-  
-  #recuperarPass{
-    cursor: pointer;
-    transition: color 0.3s;
+
+  ion-item {
+    --background: transparent; 
+    color: white; 
   }
+  ion-input {
+    font-family: 'Nunito', sans-serif;
+    --background: transparent;
+    color: white; 
+  }
+
+  ion-list {
+    font-family: 'Nunito', sans-serif;
+    background-color: #7200ff; 
+    border-radius: 10px; 
+  }
+
+  #ProfAlum {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0px;
+  }
+
+ #btn-docente{
+    font-family: 'Nunito', sans-serif;
+    --background: white;
+  --color: #7200ff;
+  }
+
+  #btn-alumno{
   
-  #recuperarPass:hover{
-    border-bottom: 1px solid;
+    font-family: 'Nunito', sans-serif;
+    --background: white;
+  --color: #7200ff;
   }

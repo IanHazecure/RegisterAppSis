@@ -1,24 +1,47 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
-import { HomePage } from './home.page';
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+  usuario: string = '';
+  password: string = '';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [HomePage],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+  constructor(private router: Router, public navCtrl: NavController ) {}
 
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  login() {
+    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    if (this.usuario === storedUser.username && this.password === storedUser.password) {
+      const userType = storedUser.userType;
+      if (userType === 'Docente') {
+        this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
+        localStorage.setItem('ingresado', 'true');
+        this.navCtrl.navigateRoot('/principal');
+      } else if (userType === 'Alumno') {
+        this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
+        localStorage.setItem('ingresado', 'true');
+        this.navCtrl.navigateRoot('/alumnos');
+      } else {
+        console.log('User type not recognized.');
+      }
+    } else {
+      console.log('Invalido');
+    }
+  }
+
+  goToRecuperar() {
+    console.log('click');
+    this.router.navigate(['/recuperar']);
+  }
+
+  goToRegister() {
+    console.log('click');
+    this.router.navigate(['/register']);
+  }
+}
