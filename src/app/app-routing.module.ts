@@ -29,7 +29,12 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
     canActivate: [noIngresadoGuard]
   },
-
+  {
+    path: 'alumnos',
+    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule),
+    canActivate: [noIngresadoGuard]
+  },
+ 
 ];
 
 @NgModule({
