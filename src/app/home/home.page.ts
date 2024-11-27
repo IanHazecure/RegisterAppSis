@@ -54,9 +54,20 @@ export class HomePage {
 
         // Extraer el perfil del usuario y asignarlo a userType
         this.userType = response.data.perfil;
-        this.username = response.data.nombre;
 
-        localStorage.setItem('username', this.username);
+        const userData = {
+          id: response.data.id,
+          run: response.data.run,
+          nombre: response.data.nombre,
+          apellido: response.data.apellido,
+          nombre_completo: response.data.nombre_completo,
+          correo: response.data.correo,
+          perfil: response.data.perfil,
+          img: response.data.img
+        };
+  
+        // Guardar el objeto en el local storage
+        localStorage.setItem('userData', JSON.stringify(userData));
 
         // Navegar según el tipo de usuario
         if (this.userType === 'Docente') {
