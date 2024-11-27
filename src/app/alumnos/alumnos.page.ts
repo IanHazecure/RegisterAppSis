@@ -17,6 +17,7 @@ export class AlumnosPage implements OnInit {
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.username = user.username || 'Invitado';
+    this.username = localStorage.getItem('username') || 'Invitado';
   }
 
   
@@ -25,6 +26,7 @@ export class AlumnosPage implements OnInit {
  logout() {
   localStorage.removeItem('ingresado');
   localStorage.removeItem('usertype');
+  localStorage.removeItem('username');
   this.router.navigate(['/home'], { replaceUrl: true }); 
 }
 }
