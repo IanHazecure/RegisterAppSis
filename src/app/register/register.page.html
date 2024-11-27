@@ -59,7 +59,11 @@
             Alumno</ion-button>
           </div>
     
-          <ion-button id="btn-register" expand="block" [disabled]="!username || !password || !userType" (click)="register()">Registrarse</ion-button>
+          <ion-button id="btn-register" 
+          expand="block" 
+          [disabled]="!username || !password || !userType" 
+          (click)="register()">
+          Registrarse</ion-button>
     
           <ion-item>
             <ion-label id="btn-volver" [routerLink]="['/']">Volver</ion-label>
