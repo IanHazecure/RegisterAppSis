@@ -30,14 +30,18 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-input [(ngModel)]="username" placeholder="Usuario" type="text"></ion-input>
+        <ion-input 
+        [(ngModel)]="username" placeholder="Usuario" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input [(ngModel)]="newPassword" placeholder="Nueva Contraseña" type="password"></ion-input>
+        <ion-input 
+        [(ngModel)]="newPassword" placeholder="Nueva Contraseña" type="password"></ion-input>
       </ion-item>
       <ion-button id="btn-recuperar" expand="block" (click)="updatePassword()">Actualizar Contraseña</ion-button>
       <ion-item>
-        <ion-label  id="btn-volver"  [routerLink]="['/']">Volver</ion-label>
+        <ion-label  
+        id="btn-volver"  
+        [routerLink]="['/']">Volver</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
