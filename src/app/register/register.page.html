@@ -46,8 +46,17 @@
           </ion-item>
     
           <div id="ProfAlum">
-            <ion-button id="btn-docente" expand="block" [class.selected]="userType === 'Docente'" (click)="setUserType('Docente')">Docente</ion-button>
-            <ion-button id="btn-alumno" xpand="block" [class.selected]="userType === 'Alumno'" (click)="setUserType('Alumno')">Alumno</ion-button>
+            <ion-button id="btn-docente" 
+            expand="block" 
+            [class.selected]="userType === 'Docente'" 
+            (click)="setUserType('Docente')">
+            Docente</ion-button>
+
+            <ion-button id="btn-alumno" 
+            xpand="block" 
+            [class.selected]="userType === 'Alumno'" 
+            (click)="setUserType('Alumno')">
+            Alumno</ion-button>
           </div>
     
           <ion-button id="btn-register" expand="block" [disabled]="!username || !password || !userType" (click)="register()">Registrarse</ion-button>
