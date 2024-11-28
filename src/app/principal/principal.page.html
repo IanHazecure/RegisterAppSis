@@ -11,7 +11,7 @@
         <span>MATCH</span>
       </ion-button>
       <ion-button>
-        <span>Nosotros</span>
+        <span>Beneficios</span>
       </ion-button>
       <ion-button>
         <span>Ayuda</span>
@@ -68,16 +68,20 @@
         </ion-button>
       </form>
     </div>
-    <div class="button-container">
-      <ion-button expand="block" color="secondary" (click)="showQRCode()">Programacion Web</ion-button>
-    </div>
-    <div class="qr-code-container" *ngIf="qrCodeVisible">
-      <qr-code value="Estas presente en tu clase de base de datos" size="300" errorCorrectionLevel="M"></qr-code>
-    </div>
   </ion-content>
   
+  
 
-  <div class="navbar">
+
+  <div class="button-container" >
+    <div id="btn-programacion" (click)="showQRCode()">Base de datos</div>
+  </div>
+
+  <div class="qr-code-container" *ngIf="qrCodeVisible">
+    <qr-code value="Estas presente en tu clase de base de datos" size="300" errorCorrectionLevel="M"></qr-code>
+  </div>
+
+  <div class="button-container">
     <div button id="btn-cerrar" (click)="logout()">Cerrar Sesión</div>
   </div>
 
