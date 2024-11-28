@@ -14,7 +14,6 @@ export class PrincipalPage implements OnInit {
   menuOpen: boolean = false;
   selectedClass: string = '';
   qrCodeVisible: boolean = false;
-  programacionButtonVisible: boolean = false;
   userData: any = {};
   curso: any = {
     nombre: '',
@@ -64,13 +63,7 @@ export class PrincipalPage implements OnInit {
     this.router.navigate(['/']); 
   }
 
-  showProgramacionButton() {
-    this.programacionButtonVisible = !this.programacionButtonVisible;
 
-    if (this.qrCodeVisible) {
-      this.qrCodeVisible = false;
-    }
-  }
 
   showQRCode() {
     this.qrCodeVisible = !this.qrCodeVisible;
