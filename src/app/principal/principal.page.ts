@@ -25,7 +25,6 @@ export class PrincipalPage implements OnInit {
   };
 
   constructor(
-    private authService: AuthService,
     private route: ActivatedRoute, 
     private router: Router,
     private http: HttpClient
@@ -40,30 +39,16 @@ export class PrincipalPage implements OnInit {
   onSubmit(form: any) {
     if (form.valid) {
       console.log('Form Submitted', this.curso);
-      
-      // Obtén el token antes de enviar la solicitud
-      const token = await this.authService.getToken();
-
-      if (token) {
-        // Llama al método para enviar el curso con el token
-        this.postCurso(this.curso, token);
-      } else {
-        console.error('No se encontró el token');
-      }
+      this.postCurso(this.curso);
     }
   }
 
-  postCurso(curso: any, token: string) {
-    const url = 'https://www.presenteprofe.cl/api/v1/cursos';
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,  // Agregar el token al encabezado
-      'Content-Type': 'application/json'
-    });
-
-    this.http.post(url, curso, { headers }).pipe(
+  postCurso(curso: any) {
+    const url = 'https://www.presenteprofe.cl/api/v1/cursos'; // URL endpoint
+    this.http.post(url, curso).pipe(
       catchError((error) => {
         console.error('Error al enviar el curso:', error);
-        return of(null);  // Devuelve null en caso de error
+        return of(null); // Devuelv un valor vacioo para evitar que falle el observable
       })
     ).subscribe((response) => {
       if (response) {
@@ -75,10 +60,8 @@ export class PrincipalPage implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('usertype');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('token'); // Remove the token from local storage
-    this.router.navigate(['/home'], { replaceUrl: true });
+    localStorage.removeItem('ingresado');
+    this.router.navigate(['/']); 
   }
 
   showProgramacionButton() {
