@@ -18,20 +18,30 @@ export class AuthService {
 
 
   async saveToken(token: string) {
-    await Preferences.set({
-      key: 'auth_token',
-      value: token,
-    });
+  if (!token) {
+    console.error('Intento de guardar un token vacío');
+    return;
   }
+
+  await Preferences.set({
+    key: 'auth_token',
+    value: token,
+  });
+
+  console.log('Token guardado exitosamente:', token);
+}
 
 
   async getToken(): Promise<string | null> {
     const { value } = await Preferences.get({ key: 'auth_token' });
+    console.log('Token recuperado:', value); // Verifica si el token se recupera correctamente
     return value;
   }
 
 
   async clearToken() {
     await Preferences.remove({ key: 'auth_token' });
+    console.log('Token eliminado'); // Confirma la eliminación del token
   }
-} 
+}
+

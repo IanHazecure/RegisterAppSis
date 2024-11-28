@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpClient and HttpHeaders
 import { catchError } from 'rxjs/operators';
+import { Preferences } from '@capacitor/preferences';
 import { of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  username: string = "";
+  username: string = '';
   menuOpen: boolean = false;
   selectedClass: string = '';
   qrCodeVisible: boolean = false;
@@ -20,14 +21,14 @@ export class PrincipalPage implements OnInit {
     nombre: '',
     sigla: '',
     institucion: '',
-    descripcion: ''
+    descripcion: '',
   };
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient // Inyectar HttpClient
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -38,46 +39,46 @@ export class PrincipalPage implements OnInit {
 
   async onSubmit(form: any) {
     if (form.valid) {
-      console.log('Form Submitted', this.curso);
-      
-      // Obtén el token antes de enviar la solicitud
-      const token = await this.authService.getToken();
-
+      console.log('Form enviado:', this.curso);
+      const key = 'auth_token';
+      const { value: token } = await Preferences.get({ key });
+      console.log('Token recuperado en onSubmit:', token);
+  
       if (token) {
-        // Llama al método para enviar el curso con el token
         this.postCurso(this.curso, token);
       } else {
-        console.error('No se encontró el token');
+        console.error('No se encontró el token en onSubmit');
       }
     }
   }
-
   postCurso(curso: any, token: string) {
     const url = 'https://www.presenteprofe.cl/api/v1/cursos';
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,  // Agregar el token al encabezado
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     });
 
-    this.http.post(url, curso, { headers }).pipe(
-      catchError((error) => {
-        console.error('Error al enviar el curso:', error);
-        return of(null);  // Devuelve null en caso de error
-      })
-    ).subscribe((response) => {
-      if (response) {
-        console.log('Respuesta de la API:', response);
-      } else {
-        console.log('No se pudo enviar el curso.');
-      }
-    });
+    this.http
+      .post(url, curso, { headers })
+      .pipe(
+        catchError((error) => {
+          console.error('Error al enviar el curso:', error);
+          return of(null);
+        })
+      )
+      .subscribe((response) => {
+        if (response) {
+          console.log('Respuesta de la API:', response);
+        } else {
+          console.log('No se pudo enviar el curso.');
+        }
+      });
   }
 
-  // Método para cerrar sesión
   logout() {
     localStorage.removeItem('usertype');
     localStorage.removeItem('userData');
-    localStorage.removeItem('token'); // Remove the token from local storage
+    localStorage.removeItem('token');
     this.router.navigate(['/home'], { replaceUrl: true });
   }
 
@@ -92,6 +93,4 @@ export class PrincipalPage implements OnInit {
   showQRCode() {
     this.qrCodeVisible = !this.qrCodeVisible;
   }
-
-  
 }
