@@ -43,11 +43,11 @@ export class PrincipalPage implements OnInit {
   }
 
   postCurso(curso: any) {
-    const url = 'https://www.presenteprofe.cl/api/v1/cursos'; // URL del endpoint
+    const url = 'https://www.presenteprofe.cl/api/v1/cursos'; // URL endpoint
     this.http.post(url, curso).pipe(
       catchError((error) => {
         console.error('Error al enviar el curso:', error);
-        return of(null); // Devuelve un valor vacío para evitar que falle el observable
+        return of(null); // Devuelv un valor vacioo para evitar que falle el observable
       })
     ).subscribe((response) => {
       if (response) {
