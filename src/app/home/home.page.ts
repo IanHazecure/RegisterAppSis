@@ -70,7 +70,7 @@ export class HomePage {
         localStorage.setItem('userData', JSON.stringify(userData));
 
         // Navegar según el tipo de usuario
-        if (this.userType === 'Docente') {
+        if (this.userType === 'docente') {
           this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
           localStorage.setItem('ingresado', 'true');
           this.navCtrl.navigateRoot('/principal');
