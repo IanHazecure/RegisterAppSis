@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Preferences } from '@capacitor/preferences';
-import { NavController, AlertController } from '@ionic/angular'; 
+import { NavController, AlertController } from '@ionic/angular'; // Importar AlertController
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -65,7 +64,6 @@ export class HomePage {
           correo: response.data.correo,
           perfil: response.data.perfil,
           img: response.data.img
-
         };
   
         // Guardar el objeto en el local storage

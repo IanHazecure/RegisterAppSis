@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpClient and HttpHeaders
+import { HttpClient } from '@angular/common/http'; // Importar HttpClient
 import { catchError } from 'rxjs/operators';
 import { Preferences } from '@capacitor/preferences';
 import { of } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.page.html',
@@ -26,7 +26,7 @@ export class PrincipalPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, 
     private router: Router,
     private http: HttpClient
   ) {}
@@ -37,48 +37,47 @@ export class PrincipalPage implements OnInit {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
   }
 
-  async onSubmit(form: any) {
+  onSubmit(form: any) {
     if (form.valid) {
-      console.log('Form enviado:', this.curso);
-      const key = 'auth_token';
-      const { value: token } = await Preferences.get({ key });
-      console.log('Token recuperado en onSubmit:', token);
-  
+      console.log('Form Submitted', this.curso);
+      
+      // Obtén el token antes de enviar la solicitud
+      const token = await this.authService.getToken();
+
       if (token) {
+        // Llama al método para enviar el curso con el token
         this.postCurso(this.curso, token);
       } else {
-        console.error('No se encontró el token en onSubmit');
+        console.error('No se encontró el token');
       }
     }
   }
+
   postCurso(curso: any, token: string) {
     const url = 'https://www.presenteprofe.cl/api/v1/cursos';
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,  // Agregar el token al encabezado
+      'Content-Type': 'application/json'
     });
 
-    this.http
-      .post(url, curso, { headers })
-      .pipe(
-        catchError((error) => {
-          console.error('Error al enviar el curso:', error);
-          return of(null);
-        })
-      )
-      .subscribe((response) => {
-        if (response) {
-          console.log('Respuesta de la API:', response);
-        } else {
-          console.log('No se pudo enviar el curso.');
-        }
-      });
+    this.http.post(url, curso, { headers }).pipe(
+      catchError((error) => {
+        console.error('Error al enviar el curso:', error);
+        return of(null);  // Devuelve null en caso de error
+      })
+    ).subscribe((response) => {
+      if (response) {
+        console.log('Respuesta de la API:', response);
+      } else {
+        console.log('No se pudo enviar el curso.');
+      }
+    });
   }
 
   logout() {
     localStorage.removeItem('usertype');
     localStorage.removeItem('userData');
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); // Remove the token from local storage
     this.router.navigate(['/home'], { replaceUrl: true });
   }
 
