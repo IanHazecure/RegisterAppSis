@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // Importar HttpClient
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Import HttpClient and HttpHeaders
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.page.html',
@@ -24,6 +24,7 @@ export class PrincipalPage implements OnInit {
   };
 
   constructor(
+    private authService: AuthService,
     private route: ActivatedRoute, 
     private router: Router,
     private http: HttpClient // Inyectar HttpClient
@@ -35,19 +36,33 @@ export class PrincipalPage implements OnInit {
     this.userData = JSON.parse(localStorage.getItem('userData') || '{}');
   }
 
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     if (form.valid) {
       console.log('Form Submitted', this.curso);
-      this.postCurso(this.curso);
+      
+      // Obtén el token antes de enviar la solicitud
+      const token = await this.authService.getToken();
+
+      if (token) {
+        // Llama al método para enviar el curso con el token
+        this.postCurso(this.curso, token);
+      } else {
+        console.error('No se encontró el token');
+      }
     }
   }
 
-  postCurso(curso: any) {
-    const url = 'https://www.presenteprofe.cl/api/v1/cursos'; // URL endpoint
-    this.http.post(url, curso).pipe(
+  postCurso(curso: any, token: string) {
+    const url = 'https://www.presenteprofe.cl/api/v1/cursos';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,  // Agregar el token al encabezado
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post(url, curso, { headers }).pipe(
       catchError((error) => {
         console.error('Error al enviar el curso:', error);
-        return of(null); // Devuelv un valor vacioo para evitar que falle el observable
+        return of(null);  // Devuelve null en caso de error
       })
     ).subscribe((response) => {
       if (response) {
@@ -60,8 +75,10 @@ export class PrincipalPage implements OnInit {
 
   // Método para cerrar sesión
   logout() {
-    localStorage.removeItem('ingresado');
-    this.router.navigate(['/']); 
+    localStorage.removeItem('usertype');
+    localStorage.removeItem('userData');
+    localStorage.removeItem('token'); // Remove the token from local storage
+    this.router.navigate(['/home'], { replaceUrl: true });
   }
 
   showProgramacionButton() {
@@ -75,4 +92,6 @@ export class PrincipalPage implements OnInit {
   showQRCode() {
     this.qrCodeVisible = !this.qrCodeVisible;
   }
+
+  
 }
