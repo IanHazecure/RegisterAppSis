@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+//import { QrScannerService } from './services/qr-scanner.service';
 
 @Component({
   selector: 'app-alumnos',
@@ -31,3 +32,15 @@ export class AlumnosPage implements OnInit {
   this.router.navigate(['/home'], { replaceUrl: true }); 
 }
 }
+
+//constructor(
+  //otras dependencias
+  //private readonly qrScannerService: QrScannerService,
+//) {
+//}
+ 
+//async scan(): Promise<void> {
+  //const barcodes = await this.qrScannerService.scan() //esto abre la camara para escanear
+ 
+  //aqui el codigo de logica con los qrs escaneados
+//}
