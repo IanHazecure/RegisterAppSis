@@ -30,16 +30,17 @@ ion-content {
 }
 
 #btn-cerrar {
- font-family: 'Nunito', sans-serif;
- width: auto; 
- padding: 10px 20px; 
- font-size: 2vh; 
- background: #7200ff; 
- color: white; 
- border-radius: 5px;
- text-align: center; 
- box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
- cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  width: auto; 
+  padding: 10px 20px; 
+  font-size: 2vh; 
+  background: #7200ff; 
+  color: white; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-bottom: 10px; 
+  transform: translateY(-20px); 
+  animation: slide-in 0.5s forwards; 
 }
 
 
@@ -86,4 +87,15 @@ ion-buttons {
 
 ion-icon {
  margin-left: 5px; 
+}
+.navbar {
+  position: fixed;
+  bottom: 0;
+  height: 3%;
+  width: 100%;
+  background: #7200ff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Add shadow */
 }
