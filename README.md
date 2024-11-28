@@ -7,8 +7,7 @@
 3. El programa empezará a ejecutarse y te pedirá unos permisos por node js, aceptalos y se ejecutará la aplicación
 
 #Como Funciona la Aplicación
-1. Aparecerás en la página para iniciar sesión, ahí debes ingresar tus datos, en caso de no estar registrado, ir al apartado de registrarse
-1.1 En el Apartado de registrarse, ingresar sus datos y seleccionar si es alumno o profesor
-2. En el caso de registrase como alumno, será llevado a la página principal donde se le dará la bienvenida y podrá escanear un código QR
-2.1 En el caso de registrarse como profesor, será llevado a la página de profesor donde podrá ver sus clases y generar un código QR para cada clase
-3. En caso de que se le haya olvidado la contraseña, también podrá recuperarla en el apartado "Recuperar Contraseña" donde podrá cambiarla inmediatamente.
+1. Dentro de la aplicación puedes ingresar tus datos de inicio sesión, dependiendo si eres alumno o profesor, se te enviará a una vista diferente
+2. En la vista de alumnos se te dará la bienvenida y se permitirá escanear un código qr
+3. En la vista de profesor se le dará la bienvenida, podrá crear clases y generar un código qr para cada clase
+4. Por otra parte también se podrá recuperar contraseña en caso de haberla olvidado
