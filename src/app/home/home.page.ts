@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular'; // Importar AlertController
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -8,31 +9,93 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   usuario: string = '';
   password: string = '';
+  userType: string = ''; // Variable para almacenar el tipo de usuario
+  username: string = '';
 
-  constructor(private router: Router, public navCtrl: NavController ) {}
+  constructor(
+    private router: Router,
+    public navCtrl: NavController,
+    private http: HttpClient, // Inyecta HttpClient
+    private alertController: AlertController // Inyecta AlertController
+  ) {}
 
   login() {
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const url = 'https://www.presenteprofe.cl/api/v1/auth'; // URL para el login
 
-    if (this.usuario === storedUser.username && this.password === storedUser.password) {
-      const userType = storedUser.userType;
-      if (userType === 'Docente') {
-        this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
-        localStorage.setItem('ingresado', 'true');
-        this.navCtrl.navigateRoot('/principal');
-      } else if (userType === 'Alumno') {
-        this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
-        localStorage.setItem('ingresado', 'true');
-        this.navCtrl.navigateRoot('/alumnos');
-      } else {
-        console.log('User type not recognized.');
+    const body = {
+      correo: this.usuario,
+      password: this.password,
+    };
+
+    this.http.post(url, body).subscribe(
+      (response: any) => {
+        console.log('Login exitoso', response);
+
+        // Después del login, llamamos al endpoint /auth/me para obtener la información del usuario
+        this.obtenerInformacionUsuario();
+      },
+      async (error) => {
+        console.error('Error en el login', error);
+
+        // Mostrar alerta de error
+        await this.mostrarAlerta();
       }
-    } else {
-      console.log('Invalido');
-    }
+    );
+  }
+
+  obtenerInformacionUsuario() {
+    const url = `https://www.presenteprofe.cl/api/v1/auth/me?user=${this.usuario}`; // URL  endpoint
+
+    this.http.get(url).subscribe(
+      (response: any) => {
+        console.log('Información del usuario obtenida', response);
+
+        // Extraer el perfil del usuario y asignarlo a userType
+        this.userType = response.data.perfil;
+
+        const userData = {
+          id: response.data.id,
+          run: response.data.run,
+          nombre: response.data.nombre,
+          apellido: response.data.apellido,
+          nombre_completo: response.data.nombre_completo,
+          correo: response.data.correo,
+          perfil: response.data.perfil,
+          img: response.data.img
+        };
+  
+        // Guardar el objeto en el local storage
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Navegar según el tipo de usuario
+        if (this.userType === 'docente') {
+          this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
+          localStorage.setItem('ingresado', 'true');
+          this.navCtrl.navigateRoot('/principal');
+        } else if (this.userType === 'estudiante') {
+          this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
+          localStorage.setItem('ingresado', 'true');
+          this.navCtrl.navigateRoot('/alumnos');
+        } else {
+          console.log('Tipo de usuario no reconocido.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener información del usuario', error);
+      }
+    );
+  }
+
+  async mostrarAlerta() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Correo o contraseña incorrecto.',
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
   }
 
   goToRecuperar() {

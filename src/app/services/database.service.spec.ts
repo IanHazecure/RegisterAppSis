@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DatabaseService } from './database.service';
 
-describe('DatabaseService', () => {
+describe('PresenteprofeService', () => {
   let service: DatabaseService;
 
   beforeEach(() => {

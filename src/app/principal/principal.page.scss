@@ -13,12 +13,13 @@
 }
 
 #saludo {
+  margin: 3vh;
   font-family: 'Nunito', sans-serif;
   border-radius: 10px; 
   background: #7200ff;
   color: white; 
   font-size: 3vh;
-  padding: 0 10px; 
+  padding: 0 15px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
 }
@@ -27,6 +28,7 @@
   justify-content: center; 
   width: 100%; 
   padding: 3vh;
+  margin-top: 100px;
 }
 
 #btn-clases,
@@ -39,12 +41,12 @@
   background: #7200ff; 
   color: white; 
   border-radius: 5px;
-  cursor: pointer; /* Ensure the cursor is a pointer */
-  margin-bottom: 10px; /* Add some space below each button */
-  opacity: 0; /* Initially hidden */
-  transform: translateY(-20px); /* Initially positioned above */
-  animation: slide-in 0.5s forwards; /* Slide in animation */
+  cursor: pointer; 
+  margin-bottom: 10px; 
+  transform: translateY(-20px); 
+  animation: slide-in 0.5s forwards; 
 }
+
 
 
 .custom-toolbar {
@@ -95,12 +97,12 @@ ion-icon {
 
 .qr-code-container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  margin-top: 20px; /* Add some margin above the QR code */
-  opacity: 0; /* Initially hidden */
-  transform: translateY(-20px); /* Initially positioned above */
-  animation: slide-in 0.5s forwards; /* Slide in animation */
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 20px; 
+  opacity: 0; 
+  transform: translateY(-20px); 
+  animation: slide-in 0.5s forwards; 
 }
 
 @keyframes slide-in {
@@ -116,3 +118,11 @@ ion-icon {
     transform: translateY(-20px);
   }
 }
+
+
+
+ion-button.submit-button {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+

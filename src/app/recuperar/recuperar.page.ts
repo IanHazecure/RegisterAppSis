@@ -22,7 +22,7 @@ export class RecuperarPage {
       this.navCtrl.navigateRoot('/home');
     } else {
       console.log('Username not found');
-      // Optionally, show an alert or message to the user
+      
     }
   }
 }

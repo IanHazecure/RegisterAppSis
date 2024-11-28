@@ -1,47 +1,21 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-})
-export class HomePage {
+import { HomePage } from './home.page';
 
-  usuario: string = '';
-  password: string = '';
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
 
-  constructor(private router: Router, public navCtrl: NavController ) {}
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [HomePage],
+      imports: [IonicModule.forRoot()]
+    }).compileComponents();
 
-  login() {
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    if (this.usuario === storedUser.username && this.password === storedUser.password) {
-      const userType = storedUser.userType;
-      if (userType === 'Docente') {
-        this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
-        localStorage.setItem('ingresado', 'true');
-        this.navCtrl.navigateRoot('/principal');
-      } else if (userType === 'Alumno') {
-        this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
-        localStorage.setItem('ingresado', 'true');
-        this.navCtrl.navigateRoot('/alumnos');
-      } else {
-        console.log('User type not recognized.');
-      }
-    } else {
-      console.log('Invalido');
-    }
-  }
-
-  goToRecuperar() {
-    console.log('click');
-    this.router.navigate(['/recuperar']);
-  }
-
-  goToRegister() {
-    console.log('click');
-    this.router.navigate(['/register']);
-  }
-}
+});
