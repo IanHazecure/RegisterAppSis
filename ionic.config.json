@@ -1,5 +1,5 @@
 {
-  "name": "Duoc",
+  "name": "ionic-app-base",
   "integrations": {
     "capacitor": {}
   },

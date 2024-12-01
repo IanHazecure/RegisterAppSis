@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController, AlertController } from '@ionic/angular'; // Importar AlertController
-import { HttpClient } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
   selector: 'app-home',
@@ -9,102 +8,62 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  usuario: string = '';
-  password: string = '';
-  userType: string = ''; // Variable para almacenar el tipo de usuario
-  username: string = '';
+  usuario: string = '';     
+  password: string = '';    
+  errorMessage: string = ''; 
 
-  constructor(
-    private router: Router,
-    public navCtrl: NavController,
-    private http: HttpClient, // Inyecta HttpClient
-    private alertController: AlertController // Inyecta AlertController
-  ) {}
+  constructor(private navCtrl: NavController, private authService: AuthService) {}
 
+  
+  validateInputs() {
+    if (!this.usuario || !this.password) {
+    
+      this.errorMessage = 'Tienes que ingresa tu usuario y contraseña.';
+    } else {
+      
+      this.errorMessage = '';   
+      this.login();  
+    }
+  }
+
+  // Método para autenticar y navegar al dashboard
   login() {
-    const url = 'https://www.presenteprofe.cl/api/v1/auth'; // URL para el login
-
-    const body = {
-      correo: this.usuario,
+    const credentials = {
+      correo: this.usuario,  
       password: this.password,
     };
 
-    this.http.post(url, body).subscribe(
-      (response: any) => {
-        console.log('Login exitoso', response);
+    // Llamar al servicio de autenticación
+    this.authService.authenticate(credentials).subscribe(
+      async (response) => {
+        console.log('Respuesta de autenticación:', response);
 
-        // Después del login, llamamos al endpoint /auth/me para obtener la información del usuario
-        this.obtenerInformacionUsuario();
-      },
-      async (error) => {
-        console.error('Error en el login', error);
+        // Guarda el token en el almacenamiento si la autenticación es exitosa
+        await this.authService.saveToken(response.auth.token);
 
-        // Mostrar alerta de error
-        await this.mostrarAlerta();
+
+
+        // Obtén el perfil del usuario desde la respuesta
+      const perfil = response.perfil;
+      const username = response.data.nombre_completo || 'Invitado';
+
+        // Navegar según el perfil del usuario
+      if (perfil === 'estudiante') {
+        // Navegar a la vista para estudiantes
+        this.navCtrl.navigateForward(['/dashboard', { usuario: username }]);
+      } else if (perfil === 'docente') {
+        // Navegar a la vista para profesores
+        this.navCtrl.navigateForward(['/dashboard-profe', { usuario: username }]);
+      } else {
+        // Manejar otros perfiles o redirigir a una vista genérica
+        this.navCtrl.navigateForward(['/dashboard', { usuario: username }]);
       }
+    },
+    (error) => {
+      console.error('Error de autenticación:', error);
+      // Muestra un mensaje de error si la autenticación falla
+      this.errorMessage = 'Usuario o contraseña incorrecta.';
+    }
     );
-  }
-
-  obtenerInformacionUsuario() {
-    const url = `https://www.presenteprofe.cl/api/v1/auth/me?user=${this.usuario}`; // URL  endpoint
-
-    this.http.get(url).subscribe(
-      (response: any) => {
-        console.log('Información del usuario obtenida', response);
-
-        // Extraer el perfil del usuario y asignarlo a userType
-        this.userType = response.data.perfil;
-
-        const userData = {
-          id: response.data.id,
-          run: response.data.run,
-          nombre: response.data.nombre,
-          apellido: response.data.apellido,
-          nombre_completo: response.data.nombre_completo,
-          correo: response.data.correo,
-          perfil: response.data.perfil,
-          img: response.data.img
-        };
-  
-        // Guardar el objeto en el local storage
-        localStorage.setItem('userData', JSON.stringify(userData));
-
-        // Navegar según el tipo de usuario
-        if (this.userType === 'docente') {
-          this.router.navigate(['/principal'], { queryParams: { nombre: this.usuario } });
-          localStorage.setItem('ingresado', 'true');
-          this.navCtrl.navigateRoot('/principal');
-        } else if (this.userType === 'estudiante') {
-          this.router.navigate(['/alumnos'], { queryParams: { nombre: this.usuario } });
-          localStorage.setItem('ingresado', 'true');
-          this.navCtrl.navigateRoot('/alumnos');
-        } else {
-          console.log('Tipo de usuario no reconocido.');
-        }
-      },
-      (error) => {
-        console.error('Error al obtener información del usuario', error);
-      }
-    );
-  }
-
-  async mostrarAlerta() {
-    const alert = await this.alertController.create({
-      header: 'Error',
-      message: 'Correo o contraseña incorrecto.',
-      buttons: ['Aceptar'],
-    });
-
-    await alert.present();
-  }
-
-  goToRecuperar() {
-    console.log('click');
-    this.router.navigate(['/recuperar']);
-  }
-
-  goToRegister() {
-    console.log('click');
-    this.router.navigate(['/register']);
   }
 }

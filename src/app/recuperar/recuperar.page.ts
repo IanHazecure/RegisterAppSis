@@ -1,28 +1,15 @@
-import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-recuperar',
   templateUrl: './recuperar.page.html',
   styleUrls: ['./recuperar.page.scss'],
 })
-export class RecuperarPage {
-  username: string = '';
-  newPassword: string = '';
+export class RecuperarPage implements OnInit {
 
-  constructor(private navCtrl: NavController) {}
+  constructor() { }
 
-  updatePassword() {
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-
-    if (this.username === storedUser.username) {
-      storedUser.password = this.newPassword;
-      localStorage.setItem('user', JSON.stringify(storedUser));
-      console.log('Password updated successfully');
-      this.navCtrl.navigateRoot('/home');
-    } else {
-      console.log('Username not found');
-      
-    }
+  ngOnInit() {
   }
+
 }
