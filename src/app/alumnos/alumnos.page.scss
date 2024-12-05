@@ -1,0 +1,101 @@
+ion-content {
+  --background: white; 
+}
+
+
+#container {
+ --background-color: #7200ff;
+ display: flex;
+ justify-content: center; 
+ align-items: center; 
+ height: 30vh;
+ text-align: center;
+}
+
+#saludo {
+  margin: 3vh;
+ font-family: 'Nunito', sans-serif;
+ border-radius: 10px; 
+ background: #7200ff;
+ color: white; 
+ font-size: 3vh;
+ padding: 0 15px; 
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+}
+.button-container {
+ display: flex;
+ justify-content: center; 
+ width: 100%; 
+}
+
+#btn-cerrar {
+  font-family: 'Nunito', sans-serif;
+  width: auto; 
+  padding: 10px 20px; 
+  font-size: 2vh; 
+  background: #7200ff; 
+  color: white; 
+  border-radius: 5px;
+  cursor: pointer; 
+  margin-bottom: 10px; 
+  transform: translateY(-20px); 
+  animation: slide-in 0.5s forwards; 
+}
+
+
+.custom-toolbar {
+ color: white;
+ --font-family: 'Nunito', sans-serif;
+ --background: #7200ff; 
+ justify-content: center;
+ align-items: center;
+}
+ion-list {
+ font-family: 'Nunito', sans-serif;
+ width: 80%;
+ background-color: #7200ff; 
+ border-radius: 10px; 
+}
+ion-item {
+ --background: transparent; 
+ color: white; 
+}
+ion-input {
+ font-family: 'Nunito', sans-serif;
+ text-align: center;
+ --background: transparent;
+ color: white; 
+}
+
+ion-button {
+ font-family: 'Nunito', sans-serif;
+ text-transform: none;
+ font-size: 16px;
+ padding: 0 15px; 
+}
+
+ion-toolbar {
+ padding: 0 50px;
+}
+
+ion-buttons {
+ display: flex;
+ justify-content: space-around; 
+ width: 100%;
+}
+
+ion-icon {
+ margin-left: 5px; 
+}
+.navbar {
+  position: fixed;
+  bottom: 0;
+  height: 3%;
+  width: 100%;
+  background: #7200ff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Add shadow */
+}

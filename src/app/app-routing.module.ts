@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { noIngresadoGuard } from './no-ingresado.guard';
+import { ingresadoGuard } from './ingresado.guard';
+
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [noIngresadoGuard]
   },
   {
     path: '',
@@ -12,41 +16,25 @@ const routes: Routes = [
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule),
+    canActivate: [noIngresadoGuard]
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },  
-  {
-    path: 'dashboard-profe',
-    loadChildren: () => import('./dashboard-profe/dashboard-profe.module').then( m => m.DashboardProfePageModule)
+    path: 'principal',
+    loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule),
+    canActivate: [ingresadoGuard]
   },
   {
-    path: 'cursos-profe',
-    loadChildren: () => import('./cursos-profe/cursos-profe.module').then( m => m.CursosProfePageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
+    canActivate: [noIngresadoGuard]
   },
   {
-    path: 'curso-detalle/:id',
-    loadChildren: () => import('./curso-detalle/curso-detalle.module').then( m => m.CursoDetallePageModule)
+    path: 'alumnos',
+    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule),
+    canActivate: [noIngresadoGuard]
   },
-  {
-    path: 'clases-curso/:id',
-    loadChildren: () => import('./clases-curso/clases-curso.module').then( m => m.ClasesCursoPageModule)
-  },
-  {
-    path: 'crear-curso',
-    loadChildren: () => import('./crear-curso/crear-curso.module').then( m => m.CrearCursoPageModule)
-  },
-  
-
-
  
-
-
-
-
-
 ];
 
 @NgModule({
