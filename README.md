@@ -11,3 +11,8 @@
 2. En la vista de alumnos se te dará la bienvenida y se permitirá escanear un código qr
 3. En la vista de profesor se le dará la bienvenida, podrá crear clases y generar un código qr para cada clase
 4. Por otra parte también se podrá recuperar contraseña en caso de haberla olvidado
+
+
+Para descargar la APK
+
+https://github.com/IanHazecure/RegisterAppSis/tree/main/apk
