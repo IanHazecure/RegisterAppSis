@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.registrapp.base"
+    namespace "io.ionic.starter"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.registrapp.base"
+        applicationId "io.ionic.starter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -22,7 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    
 }
+
+
+
 
 repositories {
     flatDir{

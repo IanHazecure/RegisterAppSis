@@ -1,50 +1,72 @@
+<link rel="stylesheet" href="home.page.scss">
+
 <ion-header [translucent]="true">
-  <ion-toolbar class="custom-toolbar" style="--background: #7200ff; --color: white;">
-    <ion-title>Match</ion-title>
+
+</ion-header>
+
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-buttons>
+      <ion-button>
+        <span>MATCH</span>
+      </ion-button>
+      <ion-button>
+        <span>Beneficios</span>
+      </ion-button>
+      <ion-button>
+        <span>Ayuda</span>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
-  <div id="app-container">
-    <div class="content-box">
-      <ion-list lines="none" class="login-form">
-        <ion-item class="inputLogin">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+
+
+  <ion-content>
+    <div id="container">
+      <ion-list lines="none">
+
+        <ion-item>
           <ion-input
             [(ngModel)]="usuario"
-            label="Usuario"
+            label="Correo"
             type="text"
             labelPlacement="floating"
-            id="username"
+
           ></ion-input>
         </ion-item>
-
-        <ion-item class="inputLogin">
+        <ion-item>
           <ion-input
             [(ngModel)]="password"
             label="Password"
             type="password"
             labelPlacement="floating"
-            id="password"
           ></ion-input>
         </ion-item>
-      </ion-list>
-      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-      <ion-button
-        id="btn-iniciar"
-        expand="block"
-        shape="round"
-        (click)="login()"
-      >
-        INGRESAR
-      </ion-button>
-      <div class="action-links">
-        <ion-button
-          fill="clear"
-          routerLink="/recuperar">
-          Recuperar contraseña
-        </ion-button>
-      </div>
-    </div>
-  </div>
-</ion-content>
 
+        <ion-button
+          id="btn-iniciar"
+          expand="block"
+          (click)="login()"
+          [disabled]="!usuario || !password"
+        >
+          INGRESAR
+        </ion-button>
+  
+
+        <ion-item id="botones-login" lines="none">
+          <ion-label (click)="goToRecuperar()" id="recuperarPass" color="primary">
+            Recuperar contraseña
+          </ion-label>
+        </ion-item>
+        <!-- <ion-item id="botones-login" lines="none">
+          <ion-label (click)="goToRegister()" id="register" color="primary">
+            ¿No tienes una cuenta? Regístrate
+          </ion-label>
+        </ion-item> -->
+      </ion-list>
+    </div>
+  </ion-content>
